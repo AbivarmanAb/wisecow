@@ -7,7 +7,8 @@ WORKDIR /app
 
 COPY wisecow.sh .
 
-RUN chmod+ wisecow.sh
+RUN chmod +x wisecow.sh
 
 EXPOSE 4499
+
 CMD ["./wisecow.sh"]
