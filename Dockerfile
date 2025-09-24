@@ -1,18 +1,13 @@
-# Use official Node.js LTS image
-FROM node:18-alpine
 
-# Create app directory
-WORKDIR /usr/src/app
+FROM alpine:latest
 
-# Install app dependencies
-COPY package*.json ./
-RUN npm ci --production
+RUN apk add --no-cache bash cowsay fortune netcat-openbsd
 
-# Copy app source
-COPY . .
-RUN npm run build
+WORKDIR /app
 
+COPY wisecow.sh .
 
-ENV PORT=3000
-EXPOSE 3000
-CMD ["npm", "start"]
+RUN chmod+ wisecow.sh
+
+EXPOSE 4499
+CMD ["./wisecow.sh"]
