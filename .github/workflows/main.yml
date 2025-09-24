@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-env:
-  DOCKER_IMAGE_NAME: wisecow-app
-  DOCKER_REGISTRY: docker.io
   
 jobs:
   build-and-deploy:
