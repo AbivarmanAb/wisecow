@@ -1,4 +1,4 @@
-name: Build and Push Docker Image
+.name: Build and Push Docker Image
 
 on:
   push:
@@ -9,10 +9,7 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-
+    
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -31,10 +28,8 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{ secrets.DOCKER_USERNAME }}/wisccow:latest
+        tags: |
+          ${{ secrets.DOCKER_USERNAME }}/wisccow:latest
+          ${{ secrets.DOCKER_USERNAME }}/wisccow:${{ github.sha }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
-
-    - name: Update Kubernetes manifests (optional)
-      run: |
-        sed -i "s|your-dockerhub-username/wisccow:latest|${{ secrets.DOCKER_USERNAME }}/wisccow:latest|g" k8s/deployment.yaml
