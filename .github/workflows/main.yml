@@ -29,7 +29,7 @@ jobs:
         context: .
         push: true
         tags: |
-          ${{ secrets.DOCKER_USERNAME }}/wisccow:latest
-          ${{ secrets.DOCKER_USERNAME }}/wisccow:${{ github.sha }}
+          ${{ secrets.DOCKER_USERNAME }}/wisecow:latest
+          ${{ secrets.DOCKER_USERNAME }}/wisecow:${{ github.sha }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
